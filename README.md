@@ -1,0 +1,20 @@
+# Shopify_task-1
+Create a feature that allows customers to build a custom pack of 8
+items, consisting of a combination of different chocolates.
+
+The total number of items in the custom pack should not exceed 8, and the
+price must be calculated automatically based on the selected products.
+Requirements: 1. Enable customers to select a combination of Chocolates for
+their custom pack.
+
+2. The sum of Chocolates should not exceed 8 items.
+3. Display the total price of the custom pack, which should update
+automatically based on the selected items and their respective quantities.
+4. Ensure that the user interface is intuitive and responsive.
+5. Provide a brief explanation of your approach, including any tools or
+frameworks used, and the reasoning behind your choices.
+
+
+This code creates a basic interface for building a custom chocolate pack with HTML, CSS, and JavaScript.
+Users can select chocolates, specify quantities, and calculate the total price. 
+The CSS provides a clean and responsive layout, while the JavaScript handles the price calculation and validation.
