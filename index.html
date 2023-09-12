@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Chocolate Pack Builder</title>
+    <link rel="stylesheet">
+</head>
+<style>
+    /* Reset some default styles for consistency */
+body, ul, li, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    background-position: center;
+    text-align: center;
+    padding: 20px;
+    color: #fff; /* Text color on top of the background */
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background color for the content */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.blink {
+         animation: blinker 1.5s linear infinite;
+         color: red;
+         font-family: sans-serif;
+    }
+    @keyframes blinker {
+     50% {
+        opacity: 0;
+    }
+}
+
+.chocolate-selector label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#chocolates {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.quantity-inputs label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.quantity {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+input[type="number"] {
+    width: 50px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.total-price p {
+    font-weight: bold;
+    font-size: 18px;
+    color: #007bff;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<body>
+    <div class="container">
+        <h1><marquee class = "blink"><u>Custom Chocolate Pack Builder</u></marquee></h1>
+        <form id="chocolateForm">
+            <div class="chocolate-selector">
+                <label for="chocolates">Select Chocolates:</label>
+                <select id="chocolates" multiple>
+                    <option value="darkChocolate">Dark Chocolate (Rs.2.00)</option>
+                    <option value="milkChocolate">Milk Chocolate (Rs.1.50)</option>
+                    <option value="whiteChocolate">White Chocolate (Rs.2.50)</option>
+                </select>
+            </div>
+            <div class="quantity-inputs">
+                <label for="quantities">Specify Quantities:</label>
+                <div class="quantity">
+                    <input type="number" id="darkChocolateQty" min="0" max="8" placeholder="Dark Chocolate">
+                </div>
+                <div class="quantity">
+                    <input type="number" id="milkChocolateQty" min="0" max="8" placeholder="Milk Chocolate">
+                </div>
+                <div class="quantity">
+                    <input type="number" id="whiteChocolateQty" min="0" max="8" placeholder="White Chocolate">
+                </div>
+            </div>
+            <div class="total-price">
+                <p>Total Price: Rs.<span id="totalPrice">0.00</span></p>
+            </div>
+            <button type="button" onclick="calculateTotalPrice()">Calculate</button>
+        </form>
+    </div>
+    <script>
+        function calculateTotalPrice() {
+    const darkChocolatePrice = 2.00;
+    const whiteChocolatePrice = 2.50;
+
+    const darkChocolateQty = parseInt(document.getElementById('darkChocolateQty').value) || 0;
+    const milkChocolateQty = parseInt(document.getElementById('milkChocolateQty').value) || 0;
+    const whiteChocolateQty = parseInt(document.getElementById('whiteChocolateQty').value) || 0;
+
+    const totalPrice = (darkChocolatePrice * darkChocolateQty) +
+                      (milkChocolatePrice * milkChocolateQty) +
+                      (whiteChocolatePrice * whiteChocolateQty);
+
+    if (totalPrice <= 0) {
+        alert("Please select at least one chocolate and specify quantities.");
+    } else if (totalPrice > 8.00) {
+        alert("Total items in the custom pack cannot exceed 8.");
+    } else {
+        document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+    }
+}
+
+    </script>
+</body>
+</html>
